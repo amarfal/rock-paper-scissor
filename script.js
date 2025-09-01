@@ -13,8 +13,8 @@ function getComputerChoice() {
     return choice.toLowerCase().trim();
   }
 
-  let humanScore = 0;
-  let computerScore = 0;
+  let humanStreak = 0;
+  let compStreak = 0;
 
   playGame();
 
@@ -24,7 +24,7 @@ function getComputerChoice() {
 
     if (human === comp) {
         console.log(`Tie! You both chose ${human}.`);
-        return;
+        return 'tie';
     }
 
     const humanWins =
@@ -34,12 +34,19 @@ function getComputerChoice() {
 
     if (humanWins) {
         humanScore++;
+        humanStreak++;
+        compStreak = 0;
         console.log(`You win! ${capitalize(human)} beats ${capitalize(comp)}.`);
+        console.log(`Score - You: ${humanScore} | Robot: ${computerScore}`);
+        return 'human';
     } else {
         computerScore++;
+        compStreak++;
+        humanStreak = 0;
         console.log(`You lose! ${capitalize(comp)} beats ${capitalize(human)}.`);
+        console.log(`Score - You: ${humanScore} | Robot: ${computerScore}`);
+        return 'computer';
     }
-    console.log(`Score - You: ${humanScore} | Robot: ${computerScore}`);
   }
 
   function capitalize(s) {
@@ -50,14 +57,32 @@ function getComputerChoice() {
   function playGame() {
     humanScore = 0;
     computerScore = 0;
+    humanStreak = 0;
+    compStreak = 0;
 
     console.log("Best of 5 - Rock, Paper, Scissors!");
 
     for (let round = 1; round <= 5; round++) {
         console.log(`\nRound ${round}:`);
+
         const human    = getHumanChoice();
+        if (human === null) {
+            console.log("Game Cancelled.");
+            return;
+        }
+
         const computer = getComputerChoice();
         playRound(human, computer); 
+
+        if (humanScore === 3 || computerScore === 3) {
+            console.log("\nEarly Finish: someone reached 3 wins.");
+            break;
+        }
+        
+        if (humanStreak === 3 || compStreak === 3) {
+            console.log("\nEarly Finish: somone won 3 in a row.");
+            break;
+        }
     }
 
     console.log("\nFinal Result:");
