@@ -80,7 +80,7 @@ function getComputerChoice() {
         }
         
         if (humanStreak === 3 || compStreak === 3) {
-            console.log("\nEarly Finish: somone won 3 in a row.");
+            console.log("\nEarly Finish: someone won 3 in a row.");
             break;
         }
     }
