@@ -6,7 +6,16 @@ function getComputerChoice() {
   }
 
   function getHumanChoice() {
-    return prompt("Choose Rock, Paper, or Scissors:")
+    const raw = prompt("Choose Rock, Paper, or Scissors:");
+    if (raw === null) return null;
+
+    const choice = raw.toLowerCase().trim();    
+    if (choice === "rock" || choice === "paper" || choice === "scissors") {
+        return choice;
+    }
+
+    console.log(`${raw} is not allowed. Please play the round again.`);
+    return "invalid";
   }
 
   function normalize(choice) {
@@ -62,13 +71,16 @@ function getComputerChoice() {
 
     console.log("Best of 5 - Rock, Paper, Scissors!");
 
-    for (let round = 1; round <= 5; round++) {
+    for (let round = 1; round <= 5; ) {
         console.log(`\nRound ${round}:`);
 
         const human    = getHumanChoice();
         if (human === null) {
             console.log("Game Cancelled.");
             return;
+        }
+        if (human === "invalid") {
+            continue;
         }
 
         const computer = getComputerChoice();
@@ -83,6 +95,8 @@ function getComputerChoice() {
             console.log("\nEarly Finish: someone won 3 in a row.");
             break;
         }
+
+        round++;
     }
 
     console.log("\nFinal Result:");
