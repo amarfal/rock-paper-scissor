@@ -38,4 +38,25 @@
         .status { font-size: clamp(16px, 2.6vw, 24px); margin-top: 8px;}
         .score  { font-size: clamp(14px, 2.2vw, 20px); margin: 8px 0 28px; }
 
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(220px, 1fr));
+            gap: 24px;
+            align-items: start;
+        }
+        .card {
+            background: var(--card);
+            border-radius: 16px;
+            box-shadow: 0 6px 18px rgba(0,0,0,.15);
+            padding: 16px 16px 20px;
+            display: grid;
+            gap: 12px;
+            justify-items: center;
+        }
+        .card img {
+            width: 100%;
+            aspect-ratio: 4 / 3;
+            object-fit: cover;
+            border-radius: 12px;
+        }
     
