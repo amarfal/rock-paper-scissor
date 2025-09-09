@@ -13,50 +13,103 @@
                 --card: rgba(255, 255, 255, .9);
             }
         
-        html, body { height: 100%; margin: 0; } 
-        body {
-            color: var(--ink);
-            font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-            background: url() center/cover fixed no-repeat;
-            display: grid;
-            place-items: start center;
-        }
-        .wrap { width: min(1100px, 100%); padding: 32px 16px 56px; }
+            html, body { height: 100%; margin: 0; } 
+            body {
+                color: var(--ink);
+                font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+                background: url() center/cover fixed no-repeat;
+                display: grid;
+                place-items: start center;
+            }
+            .wrap { width: min(1100px, 100%); padding: 32px 16px 56px; }
 
-        h1 {
-            margin: 0 0 12px;
-            text-align: center;
-            color: var(--accent);
-            font-size: clamp(28px, 5vw, 48px);
-        }
-        .status, .score {
-            text-align: center;
-            color: white;
-            text-shadow: 0 1px 3px rgba(0, 0, 0, .35);
-            font-weight: 600;
-        }
-        .status { font-size: clamp(16px, 2.6vw, 24px); margin-top: 8px;}
-        .score  { font-size: clamp(14px, 2.2vw, 20px); margin: 8px 0 28px; }
+            h1 {
+                margin: 0 0 12px;
+                text-align: center;
+                color: var(--accent);
+                font-size: clamp(28px, 5vw, 48px);
+            }
+            
+            .status, .score {
+                text-align: center;
+                color: white;
+                text-shadow: 0 1px 3px rgba(0, 0, 0, .35);
+                font-weight: 600;
+            }
+            .status { font-size: clamp(16px, 2.6vw, 24px); margin-top: 8px;}
+            .score  { font-size: clamp(14px, 2.2vw, 20px); margin: 8px 0 28px; }
 
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(3, minmax(220px, 1fr));
-            gap: 24px;
-            align-items: start;
-        }
-        .card {
-            background: var(--card);
-            border-radius: 16px;
-            box-shadow: 0 6px 18px rgba(0,0,0,.15);
-            padding: 16px 16px 20px;
-            display: grid;
-            gap: 12px;
-            justify-items: center;
-        }
-        .card img {
-            width: 100%;
-            aspect-ratio: 4 / 3;
-            object-fit: cover;
-            border-radius: 12px;
-        }
-    
+            .grid {
+                display: grid;
+                grid-template-columns: repeat(3, minmax(220px, 1fr));
+                gap: 24px;
+                align-items: start;
+            }
+            .card {
+                background: var(--card);
+                border-radius: 16px;
+                box-shadow: 0 6px 18px rgba(0,0,0,.15);
+                padding: 16px 16px 20px;
+                display: grid;
+                gap: 12px;
+                justify-items: center;
+            }
+            .card img {
+                width: 100%;
+                aspect-ratio: 4 / 3;
+                object-fit: cover;
+                border-radius: 12px;
+            }
+            .btn {
+                appearance: none;
+                border: 0;
+                background: white;
+                color: var(--accent);
+                font-weight: 800;
+                letter-spacing: .5px;
+                padding: 12px 22px;
+                border-radius: 999px;
+                box-shadow: 0 2px 8px rgba(0,0,0,.12);
+                cursor: pointer;
+            }
+            .btn:hover { transform: translate Y(-1px); }
+            .btn:disabled { opacity: .55; cursor: not-allowed; }
+
+            .restart {
+                display: none;
+                margin: 28px auto 0;
+                background: var(--accent);
+                color: white;
+            }
+        </style>
+    </head>    
+    <body>
+        <main class="wrap">
+            <h1>Rock, Paper, Scissors<br>Game</h1>
+        
+            <div id="status" class="status">Round:1 Make your move!</div>
+            <div id="score"  class="score">Score - You: 0 | Robot: 0</div>
+
+            <section class="grid">
+                <article class="card">
+                    <img src="./images/RPS.png" alt="Rock" />
+                    <button id="rockBtn" class="btn">ROCK</button>
+                </article>
+
+                <article class="card">
+                    <img src="./images/RPS.png" alt="Paper" />
+                    <button id="paperBtn" class="btn">PAPER</button>
+                </article>
+
+                <article class="card">
+                    <img src="./images/RPS.png" alt="Scissors" />
+                    <button id="scissorsBtn" class="btn">SCISSORS</button>
+                </article>
+            </section>
+
+            <button id="restart" class="btn restart">Play Again</button>
+        </main>
+
+        <script src="./script.js" defer></script>
+    </body>
+</html>
