@@ -27,6 +27,8 @@ function getComputerChoice() {
   const restartEl = $("#restart");
   const totalsEl  = $("#totals");
 
+  const resetTotalsEl = $("#resetTotals");
+
   function renderTotals() {
     totalsEl.textContent = `Total Wins - You: ${totalYou} | Robot: ${totalRobot}`;
   }
@@ -37,6 +39,18 @@ function getComputerChoice() {
   paperBtn.addEventListener("click",  () => handleHuman("paper"));
   scissBtn.addEventListener("click",  () => handleHuman("scissors"));
   restartEl.addEventListener("click", resetGame)
+
+  resetTotalsEl.addEventListener("click", () => {
+    if (!confirm('Reset total wins for both players?')) return;
+
+    localStorage.setItem('rpsHumanWins', '0');
+    localStorage.setItem('rpsRobotWins', '0');
+
+    totalYou = 0;
+    totalRobot = 0;
+
+    renderTotals();
+  });
 
   function handleHuman(human) {
     if (gameOver) return;
@@ -96,6 +110,10 @@ function resetGame() {
     humanScore = computerScore = 0;
     round = 1;
     gameOver = false;
+
+    // refresh totals
+    renderTotals();
+
     statusEl.textContent = "Round 1: Make your move!";
     scoreEl.textContent  = "Score - You: 0 | Robot: 0";
     restartEl.style.display = "none";

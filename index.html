@@ -116,6 +116,15 @@
             #totals {
                 margin-top: 36px
             }
+
+            .reset-totals {
+                margin-top: 8px;
+                text-align: center;
+                cursor: pointer;
+                font-weight: 700;
+                color: #3b5bfd;
+            }
+            .reset-totals:hover { opacity: .8; }
         </style>
     </head>    
     <body>
@@ -145,6 +154,10 @@
             <button id="restart" class="btn restart">AGAIN?</button>
 
             <h1 id="totals"></h1>
+
+            <h3 id="resetTotals" class="reset-totals" role="button" tabindex="0">
+                Reset score?
+            </h3>
         </main>
 
         <script src="./script.js" defer></script>
