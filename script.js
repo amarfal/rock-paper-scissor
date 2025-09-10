@@ -14,6 +14,10 @@ function getComputerChoice() {
   let round = 1;
   let gameOver = false;
 
+  // totals
+  let totalYou = Number(localStorage.getItem("rps_total_you") || 0);
+  let totalRobot = Number(localStorage.getItem("rps_total_robot")|| 0);
+
   // elements
   const statusEl  = $("#status");
   const scoreEl   = $("#score");
@@ -21,6 +25,12 @@ function getComputerChoice() {
   const paperBtn  = $("#paperBtn");
   const scissBtn  = $("#scissorsBtn");
   const restartEl = $("#restart");
+  const totalsEl  = $("#totals");
+
+  function renderTotals() {
+    totalsEl.textContent = `Total Wins - You: ${totalYou} | Robot: ${totalRobot}`;
+  }
+  renderTotals();
 
   // buttons
   rockBtn.addEventListener("click",   () => handleHuman("rock"));
@@ -34,12 +44,10 @@ function getComputerChoice() {
     const comp = getComputerChoice();
 
     // decide winner
-    let msg = "";
     let msgHTML = "";
 
     if (human === comp) {
-        msg = `<strong>Tie!</strong> You both chose ${human}.`;
-        msgHTML = msg;
+        msgHTML = `<strong>Tie!</strong> You both chose ${human}.`;
     } else {
         const humanWins =
             (human === "rock"     && comp === "scissors") ||
@@ -48,11 +56,9 @@ function getComputerChoice() {
 
         if (humanWins) {
             humanScore++;
-            msg = `You win! ${cap(human)} beats ${cap(comp)}.`;
             msgHTML = `<span class="win">You win!</span> ${cap(human)} beats ${cap(comp)}.`;
         } else {
             computerScore++;
-            msg = `You lose! ${cap(comp)} beats ${cap(human)}.`;
             msgHTML = `<span class="lose">You lose!</span> ${cap(comp)} beats ${cap(human)}.`;
         }
     }
@@ -66,8 +72,17 @@ function getComputerChoice() {
     // first to 5 wins
     if (humanScore === 5 || computerScore === 5) {
         gameOver = true;
-        const winner = humanScore > computerScore ? "You" : "Robot";
+        const youWon = humanScore > computerScore;
+        const winner = youWon ? "You" : "Robot"; 
         statusEl.textContent = `${winner} win the game!`;
+
+        // update totals
+        if (youWon) totalYou++;
+        else totalRobot++;
+        localStorage.setItem("rps_total_you", String(totalYou));
+        localStorage.setItem("rps_total_robot", String(totalRobot));
+        renderTotals;
+
         toggleButtons(false);
         restartEl.style.display = "block";
     }
