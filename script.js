@@ -1,35 +1,28 @@
+// helpers
+const $ = (sel) => document.querySelector(sel);
+const cap = (s) => s[0].toUpperCase() + s.slice(1);
+
 function getComputerChoice() {
     const n = Math.floor(Math.random() * 3);
-    if (n === 0) return "rock";
-    if (n === 1) return "paper";
-    return "scissors";
+    return n === 0 ? "rock" : n === 1 ? "paper" : "scissors";
   }
+  
+  let humanScore = 0;
+  let computerScore = 0;
+  let round = 1;
+  let gameOver = false;
 
-  function getHumanChoice() {
-    const raw = prompt("Choose Rock, Paper, or Scissors:");
-    if (raw === null) return null;
+  const statusEl  = $("#status");
+  const scoreEl   = $("#score");
+  const rockBtn   = $("#rockBtn");
+  const paperBtn  = $("#paperBtn");
+  const scissBtn  = $("#scissorsBtn");
+  const restartEl = $("#restart");
 
-    const choice = raw.toLowerCase().trim();    
-    if (choice === "rock" || choice === "paper" || choice === "scissors") {
-        return choice;
-    }
-
-    console.log(`${raw} is not allowed. Please play the round again.`);
-    return "invalid";
-  }
-
-  function normalize(choice) {
-    return choice.toLowerCase().trim();
-  }
-
-  let humanStreak = 0;
-  let compStreak = 0;
-
-  playGame();
-
-  function playRound(humanChoice, computerChoice) {
-    const human = normalize(humanChoice);
-    const comp = normalize(computerChoice);
+  rockBtn.addEventListener("click",   () => handleHuman("rock"));
+  paperBtn.addEventListener("click",  () => handleHuman("paper"));
+  scissBtn.addEventListener("click",  () => handleHuman("scissors"));
+  restartEl.addEventListener("click", resetGame)
 
     if (human === comp) {
         console.log(`Tie! You both chose ${human}.`);
@@ -56,7 +49,6 @@ function getComputerChoice() {
         console.log(`Score - You: ${humanScore} | Robot: ${computerScore}`);
         return 'computer';
     }
-  }
 
   function capitalize(s) {
     s = String(s);

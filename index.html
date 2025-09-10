@@ -26,13 +26,13 @@
             h1 {
                 margin: 0 0 12px;
                 text-align: center;
-                color: var(--accent);
+                color: var(--ink);
                 font-size: clamp(28px, 5vw, 48px);
             }
             
             .status, .score {
                 text-align: center;
-                color: white;
+                color: var(--accent);
                 text-shadow: 0 1px 3px rgba(0, 0, 0, .35);
                 font-weight: 600;
             }
@@ -63,8 +63,8 @@
             .btn {
                 appearance: none;
                 border: 0;
-                background: white;
-                color: var(--accent);
+                background: var(--ink);
+                color: var(--muted);
                 font-weight: 800;
                 letter-spacing: .5px;
                 padding: 12px 22px;
@@ -87,7 +87,7 @@
         <main class="wrap">
             <h1>Rock, Paper, Scissors<br>Game</h1>
         
-            <div id="status" class="status">Round:1 Make your move!</div>
+            <div id="status" class="status">Round 1: Make your move!</div>
             <div id="score"  class="score">Score - You: 0 | Robot: 0</div>
 
             <section class="grid">
