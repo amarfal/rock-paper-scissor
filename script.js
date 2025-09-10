@@ -35,8 +35,11 @@ function getComputerChoice() {
 
     // decide winner
     let msg = "";
+    let msgHTML = "";
+
     if (human === comp) {
-        msg = `Tie! You both chose ${human}.`;
+        msg = `<strong>Tie!</strong> You both chose ${human}.`;
+        msgHTML = msg;
     } else {
         const humanWins =
             (human === "rock"     && comp === "scissors") ||
@@ -46,15 +49,19 @@ function getComputerChoice() {
         if (humanWins) {
             humanScore++;
             msg = `You win! ${cap(human)} beats ${cap(comp)}.`;
+            msgHTML = `<span class="win">You win!</span> ${cap(human)} beats ${cap(comp)}.`;
         } else {
             computerScore++;
             msg = `You lose! ${cap(comp)} beats ${cap(human)}.`;
+            msgHTML = `<span class="lose">You lose!</span> ${cap(comp)} beats ${cap(human)}.`;
         }
     }
 
-    // update UI
-    statusEl.textContent = `Round ${round}: ${msg}`;
+    // update UI for this round
+    statusEl.innerHTML = `Round ${round}: ${msgHTML}`;
     scoreEl.textContent  = `Score - You: ${humanScore} | Robot: ${computerScore}`;
+
+    round++;
 
     // first to 5 wins
     if (humanScore === 5 || computerScore === 5) {
@@ -62,7 +69,7 @@ function getComputerChoice() {
         const winner = humanScore > computerScore ? "You" : "Robot";
         statusEl.textContent = `${winner} win the game!`;
         toggleButtons(false);
-        restartEl.style.display = "inline-block";
+        restartEl.style.display = "block";
     }
 }
 
