@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Rock, Paper, Scissors Game</title>
+        <title>Rock, Paper, Scissors</title>
         <link rel="icon" type="image/png" href="./images/RPS.png">
         <style>
             :root {
@@ -63,7 +63,7 @@
             .btn {
                 appearance: none;
                 border: 0;
-                background: var(--ink);
+                background: var(--accent);
                 color: var(--muted);
                 font-weight: 800;
                 letter-spacing: .5px;
@@ -85,29 +85,29 @@
     </head>    
     <body>
         <main class="wrap">
-            <h1>Rock, Paper, Scissors<br>Game</h1>
+            <h1><br>Rock, Paper, Scissors</h1>
         
             <div id="status" class="status">Round 1: Make your move!</div>
             <div id="score"  class="score">Score - You: 0 | Robot: 0</div>
 
             <section class="grid">
                 <article class="card">
-                    <img src="./images/RPS.png" alt="Rock" />
+                    <img src="./images/rock8bit.png" alt="Rock" />
                     <button id="rockBtn" class="btn">ROCK</button>
                 </article>
 
                 <article class="card">
-                    <img src="./images/RPS.png" alt="Paper" />
+                    <img src="./images/paper8bit.png" alt="Paper" />
                     <button id="paperBtn" class="btn">PAPER</button>
                 </article>
 
                 <article class="card">
-                    <img src="./images/RPS.png" alt="Scissors" />
+                    <img src="./images/scis8bit.png" alt="Scissors" />
                     <button id="scissorsBtn" class="btn">SCISSORS</button>
                 </article>
             </section>
 
-            <button id="restart" class="btn restart">Play Again</button>
+            <button id="restart" class="btn restart">PLAY AGAIN</button>
         </main>
 
         <script src="./script.js" defer></script>

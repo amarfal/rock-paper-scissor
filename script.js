@@ -70,3 +70,15 @@ function toggleButtons(on) {
     [rockBtn, paperBtn, scissBtn].forEach(b => b.disabled = !on);
 }
 
+function resetGame() {
+    humanScore = computerScore = 0;
+    round = 1;
+    gameOver = false;
+    statusEl.textContent = "Round 1: Make your move!";
+    scoreEl.textContent  = "Score - You: 0 | Robot: 0";
+    restartEl.style.display = "none";
+    toggleButtons(true);
+}
+
+// start ready
+toggleButtons(true);
